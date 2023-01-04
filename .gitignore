@@ -1,0 +1,13 @@
+node_modules
+.env
+coverage
+coverage.json
+typechain
+typechain-types
+/notatki.js
+
+# Hardhat files
+cache
+artifacts
+
+
