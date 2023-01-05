@@ -4,7 +4,7 @@ import { ethers } from "hardhat";
 const { utils, provider } = ethers;
 
 describe("PredictTheFutureChallenge", () => {
-  it("Solves the challenge", async () => {
+  it.only("Solves the challenge", async () => {
     const value = utils.parseEther("1")
 
     const contractFactory = await ethers.getContractFactory("PredictTheFutureChallenge")
@@ -12,20 +12,22 @@ describe("PredictTheFutureChallenge", () => {
 
     const contract = await contractFactory.deploy({value})
     const exploiterContract = await exploiterContractFactory.deploy(contract.address)
-    
+
     await contract.deployed()
     await exploiterContract.deployed()
 
     const tx = await exploiterContract.lockInGuess({value})
     await tx.wait()
 
-    for(let i = 0; i <=9; i++){
+    let exploited = false
+    while(!exploited){
       try {
         const exploitTx = await exploiterContract.exploit()
         await exploitTx.wait() 
-
-        if(await contract.isComplete()) break
-        
+  
+        if(await contract.isComplete()){
+          exploited = true
+        }
       } catch (error) {
       }
     }
