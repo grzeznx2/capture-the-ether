@@ -2,10 +2,10 @@ import { expect } from "chai";
 import { ethers } from "hardhat";
 const { mine } = require("@nomicfoundation/hardhat-network-helpers");
 
-const { utils, provider } = ethers;
+const { utils } = ethers;
 
 describe("PredictTheBlockHashChallenge", () => {
-  it.only("Solves the challenge", async () => {
+  it("Solves the challenge", async () => {
     const value = utils.parseEther("1")
 
     const contractFactory = await ethers.getContractFactory("PredictTheBlockHashChallenge")
