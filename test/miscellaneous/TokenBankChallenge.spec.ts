@@ -3,7 +3,7 @@ import { BigNumber, utils } from "ethers";
 import { ethers } from "hardhat";
 
 describe("TokenBankChallenge", () => {
-  it.only("Solves the challenge", async () => {
+  it("Solves the challenge", async () => {
     const amount = utils.parseEther('1').mul(500000);
 
     const [deployer, attacker] = await ethers.getSigners();
