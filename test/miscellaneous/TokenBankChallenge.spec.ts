@@ -25,6 +25,8 @@ describe("TokenBankChallenge", () => {
     const approveTx = await tokenContract.connect(attacker).approve(attacker.address, amount)
     await approveTx.wait()
     
+    console.log(await tokenContract.balanceOf(attacker.address))
+
     const attackerToAttackerContractTx = await tokenContract.connect(attacker).transferFrom(attacker.address, attackerContract.address, amount);
     await attackerToAttackerContractTx.wait();
 
